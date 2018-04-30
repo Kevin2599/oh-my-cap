@@ -1,96 +1,88 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
-  <url>
-    <loc>http://oh-my-cap.seismology.xyz/procedures/intro-to-procedures/</loc>
-  </url>
-  
-  <url>
-    <loc>http://oh-my-cap.seismology.xyz/about/</loc>
-  </url>
-  
-  <url>
-    <loc>http://oh-my-cap.seismology.xyz/procedures/gflib/</loc>
-  </url>
-  
-  <url>
-    <loc>http://oh-my-cap.seismology.xyz/install/</loc>
-  </url>
-  
-  <url>
-    <loc>http://oh-my-cap.seismology.xyz/procedures/preprocess/</loc>
-  </url>
-  
-  <url>
-    <loc>http://oh-my-cap.seismology.xyz/procedures/inversion/</loc>
-  </url>
-  
-  <url>
-    <loc>http://oh-my-cap.seismology.xyz/quick-start/</loc>
-  </url>
-  
-  <url>
-    <loc>http://oh-my-cap.seismology.xyz/bug-list/</loc>
-  </url>
-  
-  <url>
-    <loc>http://oh-my-cap.seismology.xyz/code-diffs/</loc>
-  </url>
-  
-  <url>
-    <loc>http://oh-my-cap.seismology.xyz/post/fk-flat/</loc>
-    <lastmod>2018-02-06T00:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://oh-my-cap.seismology.xyz/post/diff-1.1/</loc>
-    <lastmod>2017-10-28T00:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://oh-my-cap.seismology.xyz/post/fix-bug/</loc>
-    <lastmod>2017-09-23T00:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://oh-my-cap.seismology.xyz/post/release-1.1/</loc>
-    <lastmod>2017-09-05T00:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://oh-my-cap.seismology.xyz/post/new-website/</loc>
-    <lastmod>2017-09-01T00:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://oh-my-cap.seismology.xyz/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://oh-my-cap.seismology.xyz/</loc>
-    <lastmod>2018-02-06T00:00:00+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://oh-my-cap.seismology.xyz/categories/pages/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://oh-my-cap.seismology.xyz/tags/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://oh-my-cap.seismology.xyz/post/</loc>
-    <lastmod>2018-02-06T00:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://oh-my-cap.seismology.xyz/procedures/</loc>
-  </url>
-  
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    
+    <url>
+     <loc>/</loc>
+     <lastmod>2018-04-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/intro/</loc>
+     <lastmod>2018-04-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/install/</loc>
+     <lastmod>2018-04-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/quick-start/</loc>
+     <lastmod>2018-04-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+        
+    <url>
+     <loc>/procedures/intro-to-procedures/</loc>
+     <lastmod>2018-04-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/procedures/gflib/</loc>
+     <lastmod>2018-04-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/procedures/preprocess/</loc>
+     <lastmod>2018-04-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/procedures/inversion/</loc>
+     <lastmod>2018-04-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+    <url>
+     <loc>/parameter/</loc>
+     <lastmod>2018-04-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/changelog/</loc>
+     <lastmod>2018-04-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/code-diffs/</loc>
+     <lastmod>2018-04-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
 </urlset>

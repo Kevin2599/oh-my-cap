@@ -1,148 +1,549 @@
-<!doctype html>
-<html lang="en">
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>数据预处理</title>
-
     
-    <link rel="dns-prefetch" href="https://maxcdn.bootstrapcdn.com/" />
-    <link rel="preconnect" href="https://maxcdn.bootstrapcdn.com/" />
-    <link rel="dns-prefetch" href="https://unpkg.com/" />
-    <link rel="preconnect" href="https://unpkg.com/" />
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-0.17.3, mkdocs-material-2.7.1">
     
-    <link rel="prefetch" href="https://unpkg.com/lunr/lunr.js" />
-    <link rel="prefetch" href="http://oh-my-cap.seismology.xyz/js/search.min.js" />
-    <link rel="prefetch" href="http://oh-my-cap.seismology.xyz/index.json" />
-    <meta name="description" itemprop="description" content="&lt;h2 id=&#34;文件说明&#34;&gt;文件说明&lt;/h2&gt;  &lt;p&gt;&lt;code&gt;example&lt;/code&gt; 内的 Perl 脚本就是数据预处理和后面的反演的脚本。&lt;code&gt;20080418093658&lt;/code&gt; 是一个示例事件，里面存储这个事件的相关文件：&lt;/p&gt;  &lt;p&gt;&lt;/p&gt;" id="desc"><meta name="generator" content="Hugo 0.32.3" /><link rel="canonical" href="http://oh-my-cap.seismology.xyz/procedures/preprocess/">
-
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="prefetch stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
     
-    <link rel="prefetch stylesheet" type="text/css" href="http://oh-my-cap.seismology.xyz/styles.css">
-
-    <script>var _paq = undefined;</script></head>
-  <body itemscope itemtype="http://schema.org/WebPage">
-    <div id="site-container">
-      <div id="site-header">
-        <header class="small-text-center medium-text-left">
-          <a href="http://oh-my-cap.seismology.xyz">
-            <span id="site-title" itemprop="name">Oh My CAP</span>
-            <br/><span id="site-tagline">世间最庄严的问题是：我能做什么好事？</span>
-          </a>
-        </header>
-        <label for="menu-toggle-box"><div id="menu-toggle" class="main-nav no-select"><span><span class="fa fa-bars"></span> MENU</span></div></label>
-        <input type="checkbox" id="menu-toggle-box" class="hide"/>
-        <nav id="main-nav">
-          <ul class="menu"><li class="no-select" itemscope itemtype="http://schema.org/SiteNavigationElement">
-    <input type="checkbox" id="nav-%E5%8D%9A%E5%AE%A2" class="hide"/>
-    <a class="main-nav button" tabindex="0" href="http://oh-my-cap.seismology.xyz/post/" >
-      <span>博客</span><label for="nav-%E5%8D%9A%E5%AE%A2">
-        &nbsp;&nbsp;<span class="nav-arrow">&#9656;</span>
-      </label></a><ul>
-    <li class="no-select" itemscope itemtype="http://schema.org/SiteNavigationElement">
-    <input type="checkbox" id="nav-1.1-%E7%89%88%E5%8F%91%E5%B8%83" class="hide"/>
-    <a class="main-nav button" tabindex="0" href="http://oh-my-cap.seismology.xyz/post/release-1.1/" >
-      <span>1.1 版发布</span></a></li><li class="no-select" itemscope itemtype="http://schema.org/SiteNavigationElement">
-    <input type="checkbox" id="nav-1.1-%E7%89%88%E5%92%8C-1.0-%E7%89%88%E7%BB%93%E6%9E%9C%E4%B8%8D%E5%90%8C%E7%9A%84%E9%97%AE%E9%A2%98" class="hide"/>
-    <a class="main-nav button" tabindex="0" href="http://oh-my-cap.seismology.xyz/post/diff-1.1/" >
-      <span>1.1 版和 1.0 版结果不同的问题</span></a></li><li class="no-select" itemscope itemtype="http://schema.org/SiteNavigationElement">
-    <input type="checkbox" id="nav-fk-%E5%B1%95%E5%B9%B3%E5%8F%98%E6%8D%A2%E7%9A%84%E8%AF%B4%E6%98%8E" class="hide"/>
-    <a class="main-nav button" tabindex="0" href="http://oh-my-cap.seismology.xyz/post/fk-flat/" >
-      <span>FK 展平变换的说明</span></a></li><li class="no-select" itemscope itemtype="http://schema.org/SiteNavigationElement">
-    <input type="checkbox" id="nav-%E5%A6%82%E4%BD%95%E4%BF%AE%E5%A4%8D-bug" class="hide"/>
-    <a class="main-nav button" tabindex="0" href="http://oh-my-cap.seismology.xyz/post/fix-bug/" >
-      <span>如何修复 BUG</span></a></li><li class="no-select" itemscope itemtype="http://schema.org/SiteNavigationElement">
-    <input type="checkbox" id="nav-%E9%A1%B9%E7%9B%AE%E7%BD%91%E7%AB%99%E5%85%A8%E9%9D%A2%E6%94%B9%E7%89%88" class="hide"/>
-    <a class="main-nav button" tabindex="0" href="http://oh-my-cap.seismology.xyz/post/new-website/" >
-      <span>项目网站全面改版</span></a></li>
-    </ul></li><li class="no-select" itemscope itemtype="http://schema.org/SiteNavigationElement">
-    <input type="checkbox" id="nav-%E6%96%B0%E6%89%8B%E5%85%A5%E9%97%A8" class="hide"/>
-    <a class="main-nav button" tabindex="0" href="http://oh-my-cap.seismology.xyz/about/" >
-      <span>新手入门</span></a></li><li class="no-select" itemscope itemtype="http://schema.org/SiteNavigationElement">
-    <input type="checkbox" id="nav-%E5%AE%89%E8%A3%85" class="hide"/>
-    <a class="main-nav button" tabindex="0" href="http://oh-my-cap.seismology.xyz/install/" >
-      <span>安装</span></a></li><li class="no-select" itemscope itemtype="http://schema.org/SiteNavigationElement">
-    <input type="checkbox" id="nav-%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B" class="hide"/>
-    <a class="main-nav button" tabindex="0" href="http://oh-my-cap.seismology.xyz/quick-start/" >
-      <span>快速开始</span></a></li><li class="no-select" itemscope itemtype="http://schema.org/SiteNavigationElement">
-    <input type="checkbox" id="nav-%E6%B5%81%E7%A8%8B" class="hide"/>
-    <a class="main-nav button active" tabindex="0" href="http://oh-my-cap.seismology.xyz/procedures/" >
-      <span>流程</span><label for="nav-%E6%B5%81%E7%A8%8B">
-        &nbsp;&nbsp;<span class="nav-arrow">&#9656;</span>
-      </label></a><ul>
-    <li class="no-select" itemscope itemtype="http://schema.org/SiteNavigationElement">
-    <input type="checkbox" id="nav-%E6%B5%81%E7%A8%8B%E4%BB%8B%E7%BB%8D" class="hide"/>
-    <a class="main-nav button" tabindex="0" href="http://oh-my-cap.seismology.xyz/procedures/intro-to-procedures/" >
-      <span>流程介绍</span></a></li><li class="no-select" itemscope itemtype="http://schema.org/SiteNavigationElement">
-    <input type="checkbox" id="nav-%E8%AE%A1%E7%AE%97%E6%A0%BC%E6%9E%97%E5%87%BD%E6%95%B0" class="hide"/>
-    <a class="main-nav button" tabindex="0" href="http://oh-my-cap.seismology.xyz/procedures/gflib/" >
-      <span>计算格林函数</span></a></li><li class="no-select" itemscope itemtype="http://schema.org/SiteNavigationElement">
-    <input type="checkbox" id="nav-%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86" class="hide"/>
-    <a class="main-nav button active" tabindex="0" href="http://oh-my-cap.seismology.xyz/procedures/preprocess/" >
-      <span>数据预处理</span></a></li><li class="no-select" itemscope itemtype="http://schema.org/SiteNavigationElement">
-    <input type="checkbox" id="nav-%E5%8F%8D%E6%BC%94" class="hide"/>
-    <a class="main-nav button" tabindex="0" href="http://oh-my-cap.seismology.xyz/procedures/inversion/" >
-      <span>反演</span></a></li>
-    </ul></li><li class="no-select" itemscope itemtype="http://schema.org/SiteNavigationElement">
-    <input type="checkbox" id="nav-bug-%E5%88%97%E8%A1%A8" class="hide"/>
-    <a class="main-nav button" tabindex="0" href="http://oh-my-cap.seismology.xyz/bug-list/" >
-      <span>BUG 列表</span></a></li><li class="no-select" itemscope itemtype="http://schema.org/SiteNavigationElement">
-    <input type="checkbox" id="nav-%E4%BB%A3%E7%A0%81%E5%B7%AE%E5%BC%82" class="hide"/>
-    <a class="main-nav button" tabindex="0" href="http://oh-my-cap.seismology.xyz/code-diffs/" >
-      <span>代码差异</span></a></li></ul>
-        </nav>
+      
+        <title>数据预处理 - Oh My CAP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.78aab2dc.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.6079476c.css">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="blue" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <a href="#_1" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="Oh My CAP" class="md-header-nav__button md-logo">
+          
+            <img src="../../img/favicon.ico" width="24" height="24">
+          
+        </a>
       </div>
-      <div id="main-container" class="row" role="main" itemprop="mainContentOfPage">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Oh My CAP
+              </span>
+              <span class="md-header-nav__topic">
+                数据预处理
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
         
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
         
-        
-<main class="row-item small-full medium-two-thirds" >
-  <article id="post-article" itemscope itemtype="http://schema.org/Article" itemref="desc">
-    <header id="page-header">
-      <h1 itemprop="headline">数据预处理</h1>
-    </header>
+      </div>
+      
+    </div>
+  </nav>
+</header>
     
-    <div id="post-content"><nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#文件说明">文件说明</a></li>
-<li><a href="#预处理流程">预处理流程</a>
-<ul>
-<li><a href="#1-rdseed-pl">1. rdseed.pl</a></li>
-<li><a href="#2-eventinfo-pl">2. eventinfo.pl</a></li>
-<li><a href="#3-marktime-pl">3. marktime.pl</a></li>
-<li><a href="#4-transfer-pl">4. transfer.pl</a></li>
-<li><a href="#5-rotate-pl">5. rotate.pl</a></li>
-<li><a href="#6-resample-pl">6. resample.pl</a></li>
-</ul></li>
-</ul></li>
-</ul>
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <span class="md-nav__button md-logo">
+      
+        <img src="../../img/favicon.ico" width="48" height="48">
+      
+    </span>
+    Oh My CAP
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="引言" class="md-nav__link">
+      引言
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../intro/" title="写给初学者" class="md-nav__link">
+      写给初学者
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../install/" title="安装" class="md-nav__link">
+      安装
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../quick-start/" title="快速开始" class="md-nav__link">
+      快速开始
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      流程
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        流程
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../intro-to-procedures/" title="流程介绍" class="md-nav__link">
+      流程介绍
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../gflib/" title="计算格林函数" class="md-nav__link">
+      计算格林函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        数据预处理
+      </label>
+    
+    <a href="./" title="数据预处理" class="md-nav__link md-nav__link--active">
+      数据预处理
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="文件说明" class="md-nav__link">
+    文件说明
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="预处理流程" class="md-nav__link">
+    预处理流程
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-rdseedpl" title="1. rdseed.pl" class="md-nav__link">
+    1. rdseed.pl
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-eventinfopl" title="2. eventinfo.pl" class="md-nav__link">
+    2. eventinfo.pl
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-marktimepl" title="3. marktime.pl" class="md-nav__link">
+    3. marktime.pl
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-transferpl" title="4. transfer.pl" class="md-nav__link">
+    4. transfer.pl
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-rotatepl" title="5. rotate.pl" class="md-nav__link">
+    5. rotate.pl
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-resamplepl" title="6. resample.pl" class="md-nav__link">
+    6. resample.pl
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
-      <span itemprop="articleBody"><h2 id="文件说明">文件说明</h2>
+    
+  </li>
 
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../inversion/" title="反演" class="md-nav__link">
+      反演
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../parameter/" title="反演参数" class="md-nav__link">
+      反演参数
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../changelog/" title="版本发布" class="md-nav__link">
+      版本发布
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../code-diffs/" title="代码差异" class="md-nav__link">
+      代码差异
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="文件说明" class="md-nav__link">
+    文件说明
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="预处理流程" class="md-nav__link">
+    预处理流程
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-rdseedpl" title="1. rdseed.pl" class="md-nav__link">
+    1. rdseed.pl
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-eventinfopl" title="2. eventinfo.pl" class="md-nav__link">
+    2. eventinfo.pl
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-marktimepl" title="3. marktime.pl" class="md-nav__link">
+    3. marktime.pl
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-transferpl" title="4. transfer.pl" class="md-nav__link">
+    4. transfer.pl
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-rotatepl" title="5. rotate.pl" class="md-nav__link">
+    5. rotate.pl
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-resamplepl" title="6. resample.pl" class="md-nav__link">
+    6. resample.pl
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="_1">数据预处理<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">文件说明<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p><code>example</code> 内的 Perl 脚本就是数据预处理和后面的反演的脚本。<code>20080418093658</code> 是一个示例事件，里面存储这个事件的相关文件：</p>
-
-<p></p>
-
 <ol>
 <li><code>20080418093658.seed</code>:  SEED 格式的事件波形数据，包含了三分量波形数据以及仪器响应。</li>
+<li>
+<p><code>event.info</code>: 事件信息文件，其中包含了地震事件的基本信息，依次为发震时刻、震中纬度、震中经度、震源深度和震级。示例事件的 <code>event.info</code> 的内容如下:</p>
+<div class="codehilite"><pre><span></span>2008-04-18T09:36:58 38.4584 -87.8398 15.8 5.4
+</pre></div>
 
-<li><p><code>event.info</code>: 事件信息文件，其中包含了地震事件的基本信息，依次为发震时刻、震中纬度、震中经度、震源深度和震级。示例事件的 <code>event.info</code> 的内容如下:</p>
 
-<pre><code>2008-04-18T09:36:58 38.4584 -87.8398 15.8 5.4
-</code></pre></li>
-
-<li><p><code>event.conf</code>: 数据处理和反演所用的配置文件。在 <code>example</code></p></li>
+</li>
+<li>
+<p><code>event.conf</code>: 数据处理和反演所用的配置文件。</p>
+</li>
 </ol>
+<p>另外，<code>example</code> 内还有一个 <code>event.conf</code> 文件。脚本运行后，会首先读取和脚本在同一路径的配置文件，然后再读取事件路径下的配置文件。
+后者中的内容会覆盖前者，后者没有的设置会保留前者的内容。这样的设计主要是为了兼顾统一设置处理参数和为每个事件有针对性的设置处理参数。</p>
+<p><code>event.conf</code> 中数据预处理的参数只有下面两个：</p>
+<div class="codehilite"><pre><span></span>RESAMPLE: 0.2
+FREQ: 0.005 0.01 1.0 1.3
+</pre></div>
 
-<p>另外，<code>example</code> 内还有一个 <code>event.conf</code> 文件。脚本运行后，会首先读取和脚本在同一路径的配置文件，然后再读取事件路径下的配置文件。后者中的内容会覆盖前者，后者没有的设置会保留前者的内容。这样的设计主要是为了兼顾统一设置处理参数和为每个事件有针对性的设置处理参数。</p>
 
-<h2 id="预处理流程">预处理流程</h2>
-
+<p>RESAMPLE 参数是设置重采样的采样间隔。做重采样的主要目的是保证观测数据和格林函数的采样周期相同。
+其次是原始采样率一般是 100 Hz，这么高的采样频率没有必要。FREQ 是去仪器响应的四个频率。
+RESAMPLE 和 FREQ 的设置要注意符合 Nyquist 律。</p>
+<h2 id="_3">预处理流程<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p><code>process.pl</code> 实际上是对多个脚本的封装，其依次调用如下脚本对数据进行预处理：</p>
-
 <ol>
 <li><code>rdseed.pl</code>：数据解压与重命名</li>
 <li><code>eventinfo.pl</code>：将事件信息写入SAC头段</li>
@@ -151,127 +552,128 @@
 <li><code>rotate.pl</code>：旋转三分量至 RTZ 方向</li>
 <li><code>resample.pl</code>：数据重采样</li>
 </ol>
-
-<h3 id="1-rdseed-pl">1. rdseed.pl</h3>
-
+<h3 id="1-rdseedpl">1. rdseed.pl<a class="headerlink" href="#1-rdseedpl" title="Permanent link">&para;</a></h3>
 <p><code>rdseed.pl</code> 依次做以下三件事：</p>
-
 <ol>
 <li>从事件目录下一个或多个 SEED 文件中提取出 SAC 文件和 RESP 文件</li>
 <li>如果某台站的数据因故分割成多段数据，则进行合并</li>
 <li>将 SAC 文件按照 <code>NETWORK.STATION.LOCATION.CHANNEL.SAC</code> 格式重命名</li>
 </ol>
-
-<h3 id="2-eventinfo-pl">2. eventinfo.pl</h3>
-
+<h3 id="2-eventinfopl">2. eventinfo.pl<a class="headerlink" href="#2-eventinfopl" title="Permanent link">&para;</a></h3>
 <p><code>eventinfo.pl</code> 从 <code>event.info</code> 文件中读取事件信息，并将其写入到 SAC 头段中。</p>
-
-<h3 id="3-marktime-pl">3. marktime.pl</h3>
-
-<p><code>marktime.pl</code> 会根据事件信息和台站位置，计算 Pnl 波理论到时并写入 SAC 文件头段变量 <code>T0</code> 中。</p>
-
-<h3 id="4-transfer-pl">4. transfer.pl</h3>
-
+<h3 id="3-marktimepl">3. marktime.pl<a class="headerlink" href="#3-marktimepl" title="Permanent link">&para;</a></h3>
+<p><code>marktime.pl</code> 会根据事件信息和台站位置，计算 Pnl 波理论到时并写入 SAC 文件头段变量 <code>T0</code> 中，并对数据进行 cut。</p>
+<h3 id="4-transferpl">4. transfer.pl<a class="headerlink" href="#4-transferpl" title="Permanent link">&para;</a></h3>
 <p><code>transfer</code> 依次做以下三件事：</p>
-
 <ol>
 <li>去毛刺、去均值、去线性趋势和波形尖灭</li>
 <li>去仪器响应，将原始波形数据转换为速度记录</li>
 <li>将单位从默认的 <code>nm/s</code> 修改为 <code>cm/s</code></li>
 </ol>
-
-<h3 id="5-rotate-pl">5. rotate.pl</h3>
-
+<h3 id="5-rotatepl">5. rotate.pl<a class="headerlink" href="#5-rotatepl" title="Permanent link">&para;</a></h3>
 <p><code>rotate.pl</code> 将所有台站的三分量转到大圆路径，即 RTZ 方向。</p>
-
-<h3 id="6-resample-pl">6. resample.pl</h3>
-
+<h3 id="6-resamplepl">6. resample.pl<a class="headerlink" href="#6-resamplepl" title="Permanent link">&para;</a></h3>
 <p><code>resample.pl</code> 对数据进行重采样。<code>resample.pl</code> 需要重采样的采样周期作为参数，示例中使用的采样周期为 0.2 s。</p>
+<p><strong>注意：所有 SAC 文件的采样周期必须相同，且要与格林函数的采样周期相同。这一点是程序设计的要求。</strong></p>
+                
+                  
+                
+              
+              
+                
 
-<p><strong>注意：所有 SAC 文件的采样周期必须相同，且要与格林函数的采样周期相同。这一点是程序设计的要求。</strong></p></span>
-    </div><div id="authorbox" class="row vcenter memberbox" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    		<div class="row-item member-avatar" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
-    				<img alt="王亮 avatar" src="http://oh-my-cap.seismology.xyz/images/profile.jpg" itemprop="contentUrl" />
-    		</div>
-    		<div class="row-item member-bio">
-    			<div>
-    				<span class="widget-title">About <span itemprop="name">王亮</span></span>
-    			</div>
-    			<p itemprop="description">
-I&#39;m a PhD student from CDUT.
-</p>
-    		</div>
-    	</div></article>
 
-  </main>
-
-        <aside class="row-item small-full medium-third right" itemscope itemtype="http://schema.org/WPSideBar">
-  
-  <div class="widget" id="search-container">
-  <header>
-		<span class="widget-header"><span class="fa fa-search"></span> Search</span>
-	</header>
-	<input type="search" name="search" id="searchbox" placeholder="Search..." autocomplete="off"/>
-  <div id="search-results" class="hide"></div>
-</div>
-	<div class="widget">
-	<header>
-		<span class="widget-header"><span class="fa fa-pencil"></span> <a href="http://oh-my-cap.seismology.xyz/post/">Recent Posts</a></span>
-	</header>
-	
-	<a class="widget-header-small button" href="http://oh-my-cap.seismology.xyz/index.xml"><span class="fa fa-rss"></span> Subscribe to the Site</a>
-	<ul><li><a href="http://oh-my-cap.seismology.xyz/post/fk-flat/">FK 展平变换的说明</a></li><li><a href="http://oh-my-cap.seismology.xyz/post/diff-1.1/">1.1 版和 1.0 版结果不同的问题</a></li><li><a href="http://oh-my-cap.seismology.xyz/post/fix-bug/">如何修复 bug</a></li><li><a href="http://oh-my-cap.seismology.xyz/post/release-1.1/">1.1 版发布</a></li><li><a href="http://oh-my-cap.seismology.xyz/post/new-website/">项目网站全面改版</a></li></ul>
-</div>
-  
-	
-	
-</aside>
-
-      </div>
-      <footer class="row">
-        <div class="small-full medium-half row-item small-text-center medium-text-left medium-left">
-          <small>
-            &copy; 2018
-            <span itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-              <span itemprop="name">Oh My CAP</span>
-            </span>
-          </small>
+              
+            </article>
+          </div>
         </div>
+      </main>
+      
         
-        <div class="small-full medium-half row-item small-text-center medium-text-right" id="social-icons">
-          
-          
-          <a href="https://github.com/wangliang1989/oh-my-cap" rel="me nofollow">
-            <span class="fa fa-github"></span>
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../gflib/" title="计算格林函数" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  后退
+                </span>
+                计算格林函数
+              </span>
+            </div>
           </a>
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-        </div>
-      </footer>
-    </div><script src="https://unpkg.com/lunr/lunr.js"></script>
-    <script src="http://oh-my-cap.seismology.xyz/js/search.js" type="text/javascript"></script>
+        
+        
+          <a href="../inversion/" title="反演" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  前进
+                </span>
+                反演
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="http://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
     
-    <script>
-      var lunrIndex = undefined;
-      loadIndex("http:\/\/oh-my-cap.seismology.xyz\/index.json").then(
-        function(index) { lunrIndex = index; },
-        function(status){}
-      );
-    </script></body>
+      <script src="../../assets/javascripts/application.8eb9be28.js"></script>
+      
+        
+        
+          
+          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../assets/javascripts/lunr/lunr.jp.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"0.17.3",url:{base:"../.."}})</script>
+      
+        <script src="../../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+    
+      
+    
+  </body>
 </html>

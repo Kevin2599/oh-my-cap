@@ -1,0 +1,881 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../img/favicon.ico">
+      <meta name="generator" content="mkdocs-0.17.3, mkdocs-material-2.7.1">
+    
+    
+      
+        <title>反演参数 - Oh My CAP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.78aab2dc.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.6079476c.css">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="blue" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <a href="#_1" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="Oh My CAP" class="md-header-nav__button md-logo">
+          
+            <img src="../img/favicon.ico" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Oh My CAP
+              </span>
+              <span class="md-header-nav__topic">
+                反演参数
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <span class="md-nav__button md-logo">
+      
+        <img src="../img/favicon.ico" width="48" height="48">
+      
+    </span>
+    Oh My CAP
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="引言" class="md-nav__link">
+      引言
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../intro/" title="写给初学者" class="md-nav__link">
+      写给初学者
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../install/" title="安装" class="md-nav__link">
+      安装
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../quick-start/" title="快速开始" class="md-nav__link">
+      快速开始
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      流程
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        流程
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../procedures/intro-to-procedures/" title="流程介绍" class="md-nav__link">
+      流程介绍
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../procedures/gflib/" title="计算格林函数" class="md-nav__link">
+      计算格林函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../procedures/preprocess/" title="数据预处理" class="md-nav__link">
+      数据预处理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../procedures/inversion/" title="反演" class="md-nav__link">
+      反演
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        反演参数
+      </label>
+    
+    <a href="./" title="反演参数" class="md-nav__link md-nav__link--active">
+      反演参数
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#-b" title="-B" class="md-nav__link">
+    -B
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-cf1_pnlf2_pnlf1_swf2_sw" title="-Cf1_pnl/f2_pnl/f1_sw/f2_sw 滤波拐角频率" class="md-nav__link">
+    -Cf1_pnl/f2_pnl/f1_sw/f2_sw 滤波拐角频率
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-dw1p1p2-pnl" title="-Dw1/p1/p2 Pnl 和面波的权重" class="md-nav__link">
+    -Dw1/p1/p2 Pnl 和面波的权重
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-fthr" title="-Fthr" class="md-nav__link">
+    -Fthr
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-ggreen" title="-Ggreen 格林函数库位置" class="md-nav__link">
+    -Ggreen 格林函数库位置
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-hdt" title="-Hdt 采样周期" class="md-nav__link">
+    -Hdt 采样周期
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-idddm" title="-Idd[/dm] 搜索步长" class="md-nav__link">
+    -Idd[/dm] 搜索步长
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-jisodisoclvddclvd" title="-Jiso[/diso[/clvd[/dclvd]]] 非双力偶成分设置" class="md-nav__link">
+    -Jiso[/diso[/clvd[/dclvd]]] 非双力偶成分设置
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-kvpvsmu" title="-Kvpvs[/mu]" class="md-nav__link">
+    -Kvpvs[/mu]
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-ldura" title="-Ldura 震源持续时间" class="md-nav__link">
+    -Ldura 震源持续时间
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-mmodel_depthmag" title="-Mmodel_depth/mag 模型、深度、震级" class="md-nav__link">
+    -Mmodel_depth/mag 模型、深度、震级
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-nn" title="-Nn" class="md-nav__link">
+    -Nn
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-o" title="-O 显示设置" class="md-nav__link">
+    -O 显示设置
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-p" title="-P 绘图设置" class="md-nav__link">
+    -P 绘图设置
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-qnof" title="-Qnof" class="md-nav__link">
+    -Qnof
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-r" title="-R 网格搜索的范围" class="md-nav__link">
+    -R 网格搜索的范围
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-s" title="-S 最大移动时间" class="md-nav__link">
+    -S 最大移动时间
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-t" title="-T 时窗长度" class="md-nav__link">
+    -T 时窗长度
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-udirct" title="-Udirct" class="md-nav__link">
+    -Udirct
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-v" title="-V 视速度" class="md-nav__link">
+    -V 视速度
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-wi" title="-Wi 反演的物理量" class="md-nav__link">
+    -Wi 反演的物理量
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-xn" title="-Xn" class="md-nav__link">
+    -Xn
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-zstring" title="-Zstring 权重文件" class="md-nav__link">
+    -Zstring 权重文件
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../changelog/" title="版本发布" class="md-nav__link">
+      版本发布
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../code-diffs/" title="代码差异" class="md-nav__link">
+      代码差异
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#-b" title="-B" class="md-nav__link">
+    -B
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-cf1_pnlf2_pnlf1_swf2_sw" title="-Cf1_pnl/f2_pnl/f1_sw/f2_sw 滤波拐角频率" class="md-nav__link">
+    -Cf1_pnl/f2_pnl/f1_sw/f2_sw 滤波拐角频率
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-dw1p1p2-pnl" title="-Dw1/p1/p2 Pnl 和面波的权重" class="md-nav__link">
+    -Dw1/p1/p2 Pnl 和面波的权重
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-fthr" title="-Fthr" class="md-nav__link">
+    -Fthr
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-ggreen" title="-Ggreen 格林函数库位置" class="md-nav__link">
+    -Ggreen 格林函数库位置
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-hdt" title="-Hdt 采样周期" class="md-nav__link">
+    -Hdt 采样周期
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-idddm" title="-Idd[/dm] 搜索步长" class="md-nav__link">
+    -Idd[/dm] 搜索步长
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-jisodisoclvddclvd" title="-Jiso[/diso[/clvd[/dclvd]]] 非双力偶成分设置" class="md-nav__link">
+    -Jiso[/diso[/clvd[/dclvd]]] 非双力偶成分设置
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-kvpvsmu" title="-Kvpvs[/mu]" class="md-nav__link">
+    -Kvpvs[/mu]
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-ldura" title="-Ldura 震源持续时间" class="md-nav__link">
+    -Ldura 震源持续时间
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-mmodel_depthmag" title="-Mmodel_depth/mag 模型、深度、震级" class="md-nav__link">
+    -Mmodel_depth/mag 模型、深度、震级
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-nn" title="-Nn" class="md-nav__link">
+    -Nn
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-o" title="-O 显示设置" class="md-nav__link">
+    -O 显示设置
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-p" title="-P 绘图设置" class="md-nav__link">
+    -P 绘图设置
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-qnof" title="-Qnof" class="md-nav__link">
+    -Qnof
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-r" title="-R 网格搜索的范围" class="md-nav__link">
+    -R 网格搜索的范围
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-s" title="-S 最大移动时间" class="md-nav__link">
+    -S 最大移动时间
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-t" title="-T 时窗长度" class="md-nav__link">
+    -T 时窗长度
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-udirct" title="-Udirct" class="md-nav__link">
+    -Udirct
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-v" title="-V 视速度" class="md-nav__link">
+    -V 视速度
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-wi" title="-Wi 反演的物理量" class="md-nav__link">
+    -Wi 反演的物理量
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-xn" title="-Xn" class="md-nav__link">
+    -Xn
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-zstring" title="-Zstring 权重文件" class="md-nav__link">
+    -Zstring 权重文件
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="_1">反演参数<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>反演各个参数的意义在朱老师的脚本 <code>src/gcap/cap.pl</code> 中有官方的说明。</p>
+<p>另外，请读者一定明确设置参数究竟是在做什么。
+<code>src/gcap/cap.pl</code> 就是 gCAP 的反演脚本。在这个脚本中，各个反演参数已经有一个默认值。
+设置反演参数就是去改这些默认值。学习参数设置时首先要注意了解什么情况需要设置参数，修改默认值。</p>
+<p>这里对我有充分把握的参数进行说明。自己没有用过的参数，我虽然能或多或少揣摩意思，但也只是英译汉的层次，为了保证正确性，暂时不写，只用原英文说明代替。</p>
+<h2 id="-b">-B<a class="headerlink" href="#-b" title="Permanent link">&para;</a></h2>
+<p>output misfit errors of all solutions for bootstrapping late ($bootstrap).</p>
+<h2 id="-cf1_pnlf2_pnlf1_swf2_sw">-Cf1_pnl/f2_pnl/f1_sw/f2_sw 滤波拐角频率<a class="headerlink" href="#-cf1_pnlf2_pnlf1_swf2_sw" title="Permanent link">&para;</a></h2>
+<p>在反演前，gCAP 会先对观测数据做滤波。</p>
+<h2 id="-dw1p1p2-pnl">-Dw1/p1/p2 Pnl 和面波的权重<a class="headerlink" href="#-dw1p1p2-pnl" title="Permanent link">&para;</a></h2>
+<p>w1 是 Pnl 的权重。p1 和 p2 是目标函数中 Pnl 和面波的归一化距离的指数。 If p1 or p2 is negative, all traces will be normalized.</p>
+<h2 id="-fthr">-Fthr<a class="headerlink" href="#-fthr" title="Permanent link">&para;</a></h2>
+<p>include first-motion data in the search. thr is the threshold ($fm_thr).
+The first motion data are specified in $weight.
+The polaritiescan be specified using +-1 for P, +-2 for SV, and +-3 for SH afte the station name, e.g. LHSA/+1/-3 means that P is up and SH is CCW.
+The Green functions need to have take-off angles stored in the SAC header.</p>
+<h2 id="-ggreen">-Ggreen 格林函数库位置<a class="headerlink" href="#-ggreen" title="Permanent link">&para;</a></h2>
+<p>green 是格林函数库所在的路径。
+除非你没有像例子中那样把格林函数就放在 <code>Glib/</code> 下，否则 <strong>不要</strong> 设置这个参数。</p>
+<h2 id="-hdt">-Hdt 采样周期<a class="headerlink" href="#-hdt" title="Permanent link">&para;</a></h2>
+<p>dt 是采样周期必须和数据预处理的 RESAMPLE 参数和格林函数的 DT 二者相同。一定要设置，除非采样周期恰好是 0.1。</p>
+<h2 id="-idddm">-Idd[/dm] 搜索步长<a class="headerlink" href="#-idddm" title="Permanent link">&para;</a></h2>
+<p>dd 是断层面三个参数（strike、dip 和 rake）的搜索步长，dm 是震级的搜索步长。默认值是 10/0.1，如果想用其他步长则需要设置。</p>
+<p>If dm&lt;0, the gain of each station will be determined by inversion.</p>
+<p>我没有用过负数的情况。</p>
+<h2 id="-jisodisoclvddclvd">-Jiso[/diso[/clvd[/dclvd]]] 非双力偶成分设置<a class="headerlink" href="#-jisodisoclvddclvd" title="Permanent link">&para;</a></h2>
+<p>只有需要搜索非双力偶成分，才需要设置这个参数。iso 和 clvd 是 ISO 和 CLVD 的反演初始值。diso 和 dclvd 是 ISO 和 CLVD 搜索的步长。
+如果需要搜索非双力偶成分，通常设置为 0/0.1/0/0.1。</p>
+<h2 id="-kvpvsmu">-Kvpvs[/mu]<a class="headerlink" href="#-kvpvsmu" title="Permanent link">&para;</a></h2>
+<p>use the vpvs ratio and mu at the source to compute potency tensor parameters ISO and P0. (0/0, off).</p>
+<h2 id="-ldura">-Ldura 震源持续时间<a class="headerlink" href="#-ldura" title="Permanent link">&para;</a></h2>
+<p>地震波形是格林函数和震源时间函数（不是震源持续时间）的卷积。
+在 gCAP 中，认为震源时间函数是一个等腰梯形。等腰梯形由底边长和梯形上升阶段占据的底边长的比例决定。
+震源持续时间就是这里的底边边长。dura 为震源持续时间的长度（单位：秒）。也可以用 sac 文件来指定，我没用过这种方式。</p>
+<p>如果不设置这个参数，gCAP会使用 -M 参数中的震级，用经验公式计算。</p>
+<h2 id="-mmodel_depthmag">-Mmodel_depth/mag 模型、深度、震级<a class="headerlink" href="#-mmodel_depthmag" title="Permanent link">&para;</a></h2>
+<p><strong>gCAP 反演程序唯一的必选选项，必须设置</strong></p>
+<p>model 是模型名称。depth 是深度。gCAP 会在格林函数库的路径下去寻找相应模型、相应深度的格林函数文件。
+mag 是震级，用预估的矩震级值。</p>
+<h2 id="-nn">-Nn<a class="headerlink" href="#-nn" title="Permanent link">&para;</a></h2>
+<p>repeat the inversion n times and discard bad traces ($repeat).</p>
+<h2 id="-o">-O 显示设置<a class="headerlink" href="#-o" title="Permanent link">&para;</a></h2>
+<p>没有参数值，只要有了 -O，就不会进行反演，而是把传给二进制程序 <code>cap</code> 的各种设置输出到屏幕。</p>
+<h2 id="-p">-P<Yscale[/Xscale[/k]]]> 绘图设置<a class="headerlink" href="#-p" title="Permanent link">&para;</a></h2>
+<p>如果画图没有问题，就不需要设置。Yscale: 第一个 trace 的振幅值（英寸）。Xscale: 每英寸的时间长度。</p>
+<p>append k if one wants to keep those waveforms.</p>
+<h2 id="-qnof">-Qnof<a class="headerlink" href="#-qnof" title="Permanent link">&para;</a></h2>
+<p>number of freedom per sample ($nof)</p>
+<h2 id="-r">-R<strike1/strike2/dip1/dip2/rake1/rake2> 网格搜索的范围<a class="headerlink" href="#-r" title="Permanent link">&para;</a></h2>
+<p>默认值是 0/360/0/90/-90/90。strike2 建议改为 180，减少计算量。</p>
+<h2 id="-s">-S<s1/s2[/tie]> 最大移动时间<a class="headerlink" href="#-s" title="Permanent link">&para;</a></h2>
+<p>Pnl 和面波的移动最大时间（s1 和 s2），tie=0：SV 和 SH 相互独立移动，tie=0.5：SV 和 SH 的移动时间保持一致</p>
+<h2 id="-t">-T<m1/m2> 时窗长度<a class="headerlink" href="#-t" title="Permanent link">&para;</a></h2>
+<p>Pnl 和面波的时窗长度</p>
+<h2 id="-udirct">-Udirct<a class="headerlink" href="#-udirct" title="Permanent link">&para;</a></h2>
+<p>directivity, specify rupture direction on the fault plane (off).</p>
+<h2 id="-v">-V<vp/vl/vr> 视速度<a class="headerlink" href="#-v" title="Permanent link">&para;</a></h2>
+<p>Pnl、Love 和 Rayleigh 的视速度</p>
+<p>参见<a href="../procedures/inversion/#_5">反演中的时间截取部分</a></p>
+<h2 id="-wi">-Wi 反演的物理量<a class="headerlink" href="#-wi" title="Permanent link">&para;</a></h2>
+<p>通常 i = 1，默认值是 1。如果是 1，则观测波形的振幅是速度，2 是位移。</p>
+<h2 id="-xn">-Xn<a class="headerlink" href="#-xn" title="Permanent link">&para;</a></h2>
+<p>output other local minimums whose misfit-min&lt;n*sigma ($mltp).</p>
+<h2 id="-zstring">-Zstring 权重文件<a class="headerlink" href="#-zstring" title="Permanent link">&para;</a></h2>
+<p>string 是权重文件的文件名，如果不设置，默认值是 weight.dat。</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../procedures/inversion/" title="反演" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  后退
+                </span>
+                反演
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../changelog/" title="版本发布" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  前进
+                </span>
+                版本发布
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="http://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.8eb9be28.js"></script>
+      
+        
+        
+          
+          <script src="../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../assets/javascripts/lunr/lunr.jp.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"0.17.3",url:{base:".."}})</script>
+      
+        <script src="../js/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+    
+      
+    
+  </body>
+</html>
